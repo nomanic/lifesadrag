@@ -40,8 +40,9 @@ var lifesadrag={
 		this.mass=options.mass?options.mass:lifesadrag.mass;
 		this.collide=options.collide?options.collide:0;
 		this.collisionondrag=options.collisionondrag?options.collisionondrag:0;
+		this.snaptogrid=options.snaptogrid?options.snaptogrid:0;
 		this.handle=options.handle?lifesadrag.ob(options.handle):this.obj;
-		this.handle.onmousedown=function(e) {
+		this.handle.touchstart=this.handle.onmousedown=function(e) {
 			self=lifesadrag.obs[lifesadrag.IV(this.getAttribute('auto'))];
 			self.startX=self.obj.offsetLeft;
 			self.startY=self.obj.offsetTop;
@@ -75,6 +76,8 @@ var lifesadrag={
 			sel.vx=lifesadrag.mass*dx/tt;
 			sel.vy=lifesadrag.mass*dy/tt;
 			if (sel.contain) {
+				x=sel.snaptogrid?Math.round(x/sel.snaptogrid)*sel.snaptogrid:x;
+				y=sel.snaptogrid?Math.round(y/sel.snaptogrid)*sel.snaptogrid:y;
 				x=Math.max(0,Math.min(obj.parentNode.offsetWidth-obj.offsetWidth,x));
 				y=Math.max(0,Math.min(obj.parentNode.offsetHeight-obj.offsetHeight,y));
 			}
@@ -125,15 +128,17 @@ var lifesadrag={
 	},
 	sortcollisions:function(t) {
 		t.ischecked=1;
-		var sel,f;
+		var sel,f,ismvd=0;
 		for (f=0;f<lifesadrag.obs.length;f++) {
 			if ((sel=lifesadrag.obs[f]).collide&&(sel.ischecked!=1)&&((sel.isdrag!=1)||sel.collisionondrag)) {
 				if (lifesadrag.overlap(t.obj,sel.obj)) {
 					sel.ischecked=1;
 					lifesadrag.collision(t,sel);
+					ismvd=1;
 				}
 			}
 		}
+		return ismvd;
 	},
 	kinetic:function() {
 		var f,sel,ismvd=false;
@@ -174,7 +179,7 @@ var lifesadrag={
 		}
 		for (f=0;f<lifesadrag.obs.length;f++) {
 			if ((sel=lifesadrag.obs[f]).collide&&(sel.ischecked!=1)&&((sel.isdrag!=1)||(sel.collisionondrag==1))) {
-				lifesadrag.sortcollisions(sel);
+				ismvd=lifesadrag.sortcollisions(sel)==1?1:ismvd;
 			}
 		}
 		if (ismvd) {

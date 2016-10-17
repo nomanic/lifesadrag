@@ -76,16 +76,16 @@ var sq4=lifesadrag.draggable('square4',{contain:1,collide:1,momentum:1,mass:20,s
 
 ### Mandatory Options
 
-none
-we can just have
-lifesadrag.draggable('square1');
+none   
+we can just have    
+lifesadrag.draggable('square1');    
 
-### Optional Options
+### Optional Options    
 
-**contain**, contained by parent div (bounding box)   
-**collide**, whether it collides with other draggables  
-**momentum**, whether it continues to glide after you have stopped dragging
-**mass**, default is 10, make them as heavy or light as you want
-**collisionondrag**, whether it collides as you drag
-**snaptogrid**, snaps to grid as you drag, can be any number, will jump by increments of this
+**contain**, contained by parent div (bounding box)      
+**collide**, whether it collides with other draggables      
+**momentum**, whether it continues to glide after you have stopped dragging    
+**mass**, default is 10, make them as heavy or light as you want    
+**collisionondrag**, whether it collides as you drag    
+**snaptogrid**, snaps to grid as you drag, can be any number, will jump by increments of this    
 **handle**, target div to drag by

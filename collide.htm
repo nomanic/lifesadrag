@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+body {
+margin:0px;
+padding:0px;
+}
+#square1 {
+  position:absolute;
+  height: 100px;
+  width: 100px;
+    background-color:red;
+  border: 5px solid black
+}
+#square1a {
+  position:absolute;
+  height: 40px;
+  width: 40px;
+    background-color:green;
+  border: 5px solid black;
+  margin:30px;
+}
+#square2,#square3 {
+  position:absolute;
+  height: 100px;
+  width: 300px;
+    background-color:Blue;
+  border: 5px solid black
+}
+#square4 {
+  position:absolute;
+  height: 100px;
+  width: 600px;
+    background-color:red;
+  border: 5px solid black
+}
+
+</style>
+</head>
+<body>
+<div id="wrapper" style="width: 100%; height: 400px;">
+	  <div id="square1" style="left: 100px; top: 100px;"><div id="square1a"></div></div>
+	  <div id="square2" style="left: 300px; top: 100px;"></div>
+	  <div id="square3" style="left: 600px; top: 100px;"></div>
+	  <div id="square4" style="left: 900px; top: 100px;"></div>
+</div>
+<div id="answer"></div><br/>
+<div id="answer1"></div><br/>
+<div id="answer2"></div><br/>
+<div id="answer3"></div>
+<script type="text/javascript" src="lifesadrag.js"></script>
+<script type="text/javascript">
+ob=function(orange,quebec){return (typeof orange==='string')?((orange==='')?quebec:document.getElementById(orange)):orange;};
+inr = function (romeo, tango, umbrella,ln) {ln = "";if (!ob(romeo)) {return;}if (umbrella == 2) {ln = ob(romeo).innerHTML + tango;} else if (umbrella == 1) {ln = tango + ob(romeo).innerHTML;} else {ln = tango;}ob(romeo).innerHTML = ln;};
+szview=function() {return [Math.max(document.documentElement.clientWidth, window.innerWidth || 0),Math.max(document.documentElement.clientHeight, window.innerHeight || 0)];}
+
+sq1=lifesadrag.draggable('square1',{contain:1,collide:1,collisionondrag:1,handle:'square1a',momentum:1,mass:20});
+sq2=lifesadrag.draggable('square2',{contain:1,collide:1,collisionondrag:1,momentum:1,mass:20});
+sq3=lifesadrag.draggable('square3',{contain:1,collide:1,collisionondrag:1,momentum:1,mass:20});
+sq4=lifesadrag.draggable('square4',{contain:1,collide:1,momentum:1,mass:20,snaptogrid:50});
+
+</script>
+
+</body>
+</html>
